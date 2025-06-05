@@ -1,0 +1,567 @@
+@font-face {
+  font-family: "Lyon Arabic Display Medium";
+  src: url(LyonArabic-Display.otf);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lyon Arabic Text Regular";
+  src: url(LyonArabic-Regular.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lyon Arabic Text Bold";
+  src: url(LyonArabic-Bold.otf);
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT America Regular";
+  src: url(GT-America-Standard-Regular.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT America Bold";
+  src: url(GT-America-Standard-Bold.otf);
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lyon Arabic Text Regular", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.3;
+  color: #333;
+  overflow-x: hidden;
+  font-kerning: normal;
+}
+:root {
+  --headline-size: clamp(2.5rem, 6vw, 6rem);
+  --subhead-size: calc(var(--headline-size));
+  --body-size: calc(var(--headline-size) * 0.2);
+  --caption-size: calc(var(--body-size) * 0.6);
+  --body-leading: 1.3;
+}
+
+.top-left-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 18px;
+  z-index: 10;
+}
+
+#title {
+  margin: 0px;
+  font-family: "Lyon Arabic Display Medium", serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: white;
+  text-align: left;
+}
+
+.full-viewport {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.background-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.8)
+  );
+  z-index: 1;
+}
+
+.parallax-image,
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.zoom-in {
+  transform: scale(1.05);
+}
+
+.content-width-standard {
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-block-wrapper {
+  position: relative;
+  width: 60%;
+  max-width: 900px;
+  min-width: 280px;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.content-section {
+  color: white;
+  padding: 50px 20px;
+}
+
+.content-block-wrapper h1 {
+  font-family: "Lyon Arabic Display Medium", serif;
+  font-size: var(--subhead-size);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-weight: 500;
+  width: 100%;
+  letter-spacing: 0;
+}
+
+.content-block-wrapper p {
+  font-family: "Lyon Arabic Text Regular", serif;
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  width: 63%;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.content-block-wrapper p.long-form {
+  text-align: left;
+}
+
+.section-divider {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: #333;
+  margin: 1.5rem 0;
+}
+
+#details-section {
+  display: flex;
+  background-color: white;
+  justify-content: space-around;
+  padding: 80px 20px;
+  align-items: center;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.detail-image {
+  width: 30%;
+  height: 30%;
+  object-fit: cover;
+  transition: transform 0.1s ease-out, filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center center;
+  filter: blur(8px);
+  opacity: 0.3;
+}
+
+.detail-image.animate-section.animated,
+.animate-section.animated.detail-image {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.image-block {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+#cta-form-section {
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  padding: 80px 20px;
+}
+
+.cta-content {
+  max-width: 900px;
+  width: 100%;
+  padding: 50px;
+}
+
+.cta-content h1 {
+  font-family: "GT America Regular", sans-serif;
+  font-size: var(--subhead-size);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.cta-content p {
+  font-family: "Lyon Arabic Text Regular", serif;
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  margin-bottom: 30px;
+  opacity: 0.8;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.cta-button {
+  font-family: "GT America Bold", sans-serif;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: calc(var(--body-size) * 0.95);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  letter-spacing: 0;
+}
+
+.lead-form-container {
+  background: white;
+  padding: 50px;
+  width: 60%;
+  max-width: 900px;
+  color: #333;
+}
+
+.lead-form-container h3 {
+  font-family: "GT America Regular", serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 25px;
+  text-align: left;
+  color: #222;
+  letter-spacing: 0;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  font-family: "GT America Bold", sans-serif;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  letter-spacing: 0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+  font-family: "GT America Regular", sans-serif;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  font-size: var(--body-size);
+  letter-spacing: 10;
+}
+
+.form-caption {
+  font-family: "GT America Regular", sans-serif;
+  font-size: var(--caption-size);
+  line-height: var(--body-leading);
+  color: #666;
+  margin-top: 5px;
+  letter-spacing: 10;
+}
+
+.lead-form-container button[type="submit"] {
+  font-family: "GT America Bold", sans-serif;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: calc(var(--body-size) * 0.9);
+  font-weight: 600;
+  cursor: pointer;
+  width: 40%;
+  transition: background-color 0.3s ease;
+  letter-spacing: 0;
+  display: block;
+  margin: 0 auto;
+}
+
+.form-status {
+  font-family: "GT America Regular", sans-serif;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600;
+  color: #e74c3c;
+  font-size: var(--caption-size);
+  letter-spacing: 10;
+}
+
+.main-nav {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.nav-link {
+  font-family: "Lyon Arabic Text Regular", serif;
+  color: white;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: calc(var(--body-size) * 0.9);
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@keyframes blurToUnblur {
+  0% {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes transformUp {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-section {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(50px);
+  will-change: transform, opacity, filter;
+}
+
+.animate-section.animated {
+  animation: blurToUnblur 1.2s ease forwards, transformUp 1s ease forwards;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.site-footer {
+  background-color: white;
+  padding: 40px 20px;
+  color: black;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright p {
+  font-family: "Lyon Arabic Text Regular", serif;
+  font-size: calc(var(--body-size) * 0.8);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo-container img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.logo-container img:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1400px) {
+  .content-block-wrapper,
+  .cta-content,
+  .lead-form-container {
+    max-width: 95%;
+    padding: 45px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-block-wrapper,
+  .cta-content,
+  .lead-form-container {
+    max-width: 92%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --body-size: calc(var(--headline-size) * 0.21);
+  }
+  .content-block-wrapper,
+  .cta-content,
+  .lead-form-container {
+    max-width: 90%;
+    padding: 38px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --body-size: calc(var(--headline-size) * 0.22);
+  }
+  .content-block-wrapper {
+    width: 90%;
+    max-width: 98%;
+    min-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+  }
+
+  .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --body-size: calc(var(--headline-size) * 0.25);
+  }
+  .cta-button {
+    padding: 14px 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --body-size: calc(var(--headline-size) * 0.27);
+  }
+  .content-block-wrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 120px;
+    margin: 12px 0;
+    padding: 12px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --body-size: calc(var(--headline-size) * 0.3);
+  }
+  .content-block-wrapper,
+  .cta-content,
+  .lead-form-container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .top-left-title {
+    width: 100%;
+    text-align: left;
+    left: 0;
+    padding: 10px;
+  }
+
+  #title {
+    padding-left: 0;
+  }
+
+  .lead-form-container button[type="submit"] {
+    width: 60%;
+  }
+
+  .lead-form-container {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .content-block-wrapper,
+  .cta-content,
+  .lead-form-container {
+    padding: 20px 15px;
+  }
+
+  .lead-form-container button[type="submit"] {
+    width: 70%;
+  }
+}
