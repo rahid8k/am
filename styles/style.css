@@ -95,6 +95,23 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Add this to ensure stacking context */
+  pointer-events: none;
+}
+
+.background-image-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* Example: dark gradient from bottom to transparent top */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.15) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
 }
 
 .background-image {
