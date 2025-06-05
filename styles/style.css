@@ -550,10 +550,10 @@ body {
 
   .top-left-title {
     position: absolute;
-    left: 0;
+    left: 20px;         /* Keep the left margin like desktop */
     top: 20px;
     width: auto;
-    padding: 12px 5px; /* Match .content-block-wrapper.left-align */
+    padding: 12px 18px; /* Match desktop padding */
     z-index: 10;
     background: none;
     text-align: left;
@@ -581,10 +581,10 @@ body {
   }
 
   .top-left-title {
-    left: 0;
+    left: 15px;         /* Slightly smaller margin for very small screens */
     top: 10px;
     width: 100%;
-    padding: 10px 5px; /* Match .content-block-wrapper.left-align */
+    padding: 10px 15px;
     text-align: left;
   }
 
