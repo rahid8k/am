@@ -730,14 +730,14 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 12px;   /* was 24px */
-  padding-right: 12px;  /* was 24px */
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 @media (max-width: 900px) {
   .main-container {
-    padding-left: 6px;   /* was 12px */
-    padding-right: 6px;  /* was 12px */
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
@@ -747,21 +747,10 @@ body {
   padding-right: 0;
 }
 
-/* Ensure all text blocks are aligned with .main-container */
-.content-block-wrapper,
-.content-wrapper {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+.content-wrapper,
+.content-block-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
   box-sizing: border-box;
-}
-
-.content-block-wrapper p {
-  width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 }
