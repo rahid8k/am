@@ -566,6 +566,27 @@ body {
     padding: 0;
     text-align: left;
   }
+
+  .zoomed-mobile {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s;
+  }
+  .zoomed-mobile-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    z-index: 9998;
+  }
 }
 
 @media (max-width: 480px) {
