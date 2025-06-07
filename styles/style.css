@@ -730,14 +730,14 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 12px;   /* was 24px */
+  padding-right: 12px;  /* was 24px */
 }
 
 @media (max-width: 900px) {
   .main-container {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 6px;   /* was 12px */
+    padding-right: 6px;  /* was 12px */
   }
 }
 
