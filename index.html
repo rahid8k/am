@@ -22,14 +22,13 @@
       }
 #zoomable-map {
   transition: 
-    transform 0.8s cubic-bezier(0.4,0,0.2,1), /* <-- increased duration */
+    transform 3s cubic-bezier(0.4,0,0.2,1), /* <-- increased duration */
     box-shadow 0.3s,
     z-index 0s,
     background 0.3s;
   transform-origin: center center;
   z-index: 1;
   position: relative;
-  cursor: zoom-in;
 }
 
 #zoomable-map.zoomed {
@@ -44,8 +43,14 @@
   margin: 0;
   padding: 0;
   box-shadow: none;
-  transform: none; /* Remove scaling and translation */
-  cursor: zoom-out;
+  transform: scale(2.5) translate(-50%, -50%);
+  left: 50vw;
+  top: 50vh;
+  transition: 
+    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s,
+    z-index 0s,
+    background 0.3s;
 }
 
 @media (min-width: 901px) {
