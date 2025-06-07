@@ -746,3 +746,11 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
+
+.content-wrapper,
+.content-block-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
