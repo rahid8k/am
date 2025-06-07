@@ -5,78 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Al Maha Island - Luxury Experience</title>
     <link rel="stylesheet" href="/styles/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
       html, body {
         overflow-x: hidden;
         max-width: 100vw;
-        touch-action: pan-y;
+        touch-action: pan-y; /* Only allow vertical scrolling */
       }
       .background-image,
       .detail-image {
-        touch-action: pan-y;
+        touch-action: pan-y; /* Only allow vertical scroll on images */
         user-select: none;
         -webkit-user-drag: none;
         -webkit-touch-callout: none;
       }
-      #zoomable-map {
-        transition: 
-          transform 0.8s cubic-bezier(0.4,0,0.2,1),
-          box-shadow 0.3s,
-          z-index 0s,
-          background 0.3s;
-        transform-origin: center center;
-        z-index: 1;
-        position: relative;
-        cursor: zoom-in;
-        background: none;
-      }
-      #zoomable-map.zoomed {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw !important;
-        height: 100vh !important;
-        object-fit: contain;
-        background: rgba(0,0,0,0.95);
-        z-index: 9999;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        transform: none;
-        cursor: zoom-out;
-      }
-      #zoom-close-btn {
-        display: none;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 10000;
-        font-size: 2rem;
-        background: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        line-height: 36px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      }
-      #zoomable-map.zoomed + #zoom-close-btn {
-        display: block !important;
-      }
-      @media (min-width: 901px) {
-        #zoomable-map.zoomed {
-          position: static;
-          width: auto !important;
-          height: auto !important;
-          background: none;
-          z-index: auto;
-        }
-        #zoom-close-btn {
-          display: none !important;
-        }
-      }
+#zoomable-map {
+  transition: 
+    transform 3s cubic-bezier(0.4,0,0.2,1), /* <-- increased duration */
+    box-shadow 0.3s,
+    z-index 0s,
+    background 0.3s;
+  transform-origin: center center;
+  z-index: 1;
+  position: relative;
+}
+
+#zoomable-map.zoomed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  transform: none; /* No scaling or translation */
+  transition: 
+    transform 0.8s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s,
+    z-index 0s,
+    background 0.3s;
+  cursor: zoom-out;
+}
+
+@media (min-width: 901px) {
+  #zoomable-map.zoomed {
+    position: static;
+    width: auto !important;
+    height: auto !important;
+    background: none;
+    z-index: auto;
+  }
+}
+
+#zoom-close-btn {
+  display: none;
+}
+#zoomable-map.zoomed + #zoom-close-btn {
+  display: block !important;
+}
     </style>
   </head>
   <body>
@@ -86,23 +77,402 @@
       </div>
     </header>
 
-    <main>
-      <section>
-        <div class="content-block-wrapper left-align">
-          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">A SENSE OF PLACE</h1>
-        </div>
-        <div class="image-block" style="text-align:center;">
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
           <img
-            src="images/a sense of place map.png"
-            alt="A Sense of Place Map"
-            class="detail-image"
-            id="zoomable-map"
-            style="max-width:100%;height:auto;cursor:zoom-in;"
+            src="images/property1.jpg"
+            alt="Modern Architecture"
+            class="background-image"
           />
-          <button id="zoom-close-btn" aria-label="Close zoomed image">&times;</button>
+        </div>
+        <div class="content-block-wrapper left-align">
+                    <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">A SENSE OF PLACE</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              True luxury is a connection to something greater. Doha may appear
+              as desert along the Arabian Gulf, but it holds an ancient energy —
+              a wisdom passed down through generations about harmony with
+              nature, resilience, and the sacred rhythms of life. Al Maha
+              embodies this spirit. Its landscape will be home to the rocks, the
+              birds, and the Oryx gifted by His Royal Highness — guardians of
+              peace, majesty, and presence. This is more than a destination. It
+              is a living emotion. A place where we remember that we, too, are
+              part of nature.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/a sense of place map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+              id="zoomable-map"
+            />
+            <button id="zoom-close-btn" style="display:none;position:fixed;top:20px;right:20px;z-index:10000;font-size:2rem;background:#fff;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;">&times;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/Lusail Museum.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">LUSAIL MUSEUM</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              The Lusail Museum is a museum of ideas and their history with a
+              local anchor. It aims to provide an engaging and thought-provoking
+              experience for visitors that addresses historic and contemporary
+              cultural encounters. The journey starts in Lusail, and the
+              location and its innate connection to the Founder, Sheikh Jassim
+              bin Mohammed bin Thani, connects the narrative to Qatar, its
+              history and its current soft power policy.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/lusail museum map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/Landscape and gardens.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">LANDSCAPE AND GARDENS</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              Nature is not a backdrop. It is the essence. Al Maha is the Middle
+              East’s first Nature Positive City, designed by the world’s
+              foremost biologists and landscape architects. Lush orchards,
+              shaded gardens, and living canopies reduce temperatures, generate
+              water, and nourish the body and soul. A living, breathing
+              ecosystem where luxury means harmony — rewilding our lives while
+              feeding our senses.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/landsape & gardens map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/tha village.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+                    <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">THE VILLAGE</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              Where elegance meets authenticity. A car-free village crafted with vernacular charm. Life unfolds along shaded paths and tree-lined terraces. Here, residents live among farmers, artisans, and creators — a regenerative community where simplicity becomes sophistication, and daily life is an expression of beauty, purpose, and connection. Residents enjoy an exclusive beach club, museum-grade art storage, and the most advanced wellness and longevity facilities in the region.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/the village map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/al maha corniche&the souk.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+                              <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">AL MAHA CORNICHE & THE SOUK</h1>
+
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              Luxury returns to its roots: creativity, craftsmanship, and soul.
+              The Souk at Al Maha gathers the world’s most visionary brands,
+              artisans, and creators — where gastronomy, design, fashion, and
+              artistry are redefined through a lens of authenticity and
+              innovation. A fusion of southern aesthetics and future-forward
+              technology. Every year, Art Basel brings the best of the global
+              art scene to the island. At its core, a pioneering longevity
+              center reconnects body, mind, and soul — a place for profound
+              transformation.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/al maha corniche & the souk map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/villas & townhouse.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">VILLAS & TOWNHOUSES</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              Architecture as a manifesto of meaning. Inspired by the legacy of the founder’s houses, beachfront and hilltop villas seamlessly blend into the landscape with panoramic views of the sea and the setting sun. Residents can enjoy a neighbourhood defined by gem gardens, plazas, shaded laneways and car-free streets. For those more partial to urban living, vaulted townhouses sit atop the Souk with views over the marina to Lusail City across a central park.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/villas & townhouses map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/Museum grounds.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">MUSEUM GROUNDS</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              The site is a man-made island shaped by topography and an
+              indigenous landscape. Our master plan has been developed to bring
+              together diverse but complementary programs located throughout
+              this landscape, creating an ‘ecosystem’ that can grow and change
+              over time. Walled gardens placed throughout act as counter points
+              to the more arid landscape, enriching the visitor experience. The
+              museum itself occupies the southern tip of the island, acting as a
+              physical marker within the island.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/museum grounds map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/The building.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">THE BUILDING</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              The precise geometric form of the building is both specific and
+              universal — a truncated sphere, seemingly partially buried in the
+              earth. The building exterior is rough, earthen, sand-like and
+              resilient, in response to its coastal setting; it appears as if it
+              is a piece of the land itself. Daylight enters the interior spaces
+              through deeply recessed windows cut out of the facade, protecting
+              the interiors from direct sunlight; the surrounding sea and city
+              of Lusail remain constantly visible.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/the building map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="feature-section-1" class="full-viewport content-section">
+        <div class="background-image-container">
+          <img
+            src="images/THE CRESCENT.jpeg"
+            alt="Modern Architecture"
+            class="background-image"
+          />
+        </div>
+        <div class="content-block-wrapper left-align">
+          <h1 style="font-family: 'GT America Regular', Arial, sans-serif;">THE CRESCENT</h1>
+        </div>
+      </div>
+      <div id="details-section">
+        <div class="content-wrapper">
+          <div class="content-block-wrapper">
+            <p>
+              Three intersecting spheres shape and carve the volume of the
+              building into two distinct parts: the first resembles a full moon,
+              while the second resembles a crescent moon that is offset from its
+              full counterpart. The space between these two forms is a
+              crescent-shaped internal street naturally lit from above; it
+              serves to connect the entrances of the museum to the central lobby
+              and other public functions such as a library, auditorium, shop,
+              café, and prayer space.
+            </p>
+          </div>
+          <div class="image-block">
+            <img
+              src="images/the crescent map.png"
+              alt="Al Maha Detail"
+              class="detail-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta-form-section" class="full-viewport cta-section">
+      <section class="cta-grid">
+        <div class="cta-content">
+          <h1>AL MAHA ISLAND</h1>
+          <p>
+            Al Maha is a journey into the soul of the East. A place where
+            history defines the present and where the timeless elegance of
+            oriental culture reaches its highest refinement. An island where a
+            museum becomes the heart of an ecosystem – where architecture,
+            design, gastronomy, wellness, and nature are all inspired by local
+            heritage. A sanctuary where the ancestral wisdom meets the future of
+            humanity – a place to feel, to create, and to truly be human again.
+          </p>
+            <p style="margin: 40px 0 0 0;">
+            <a href="https://almaha.qc.plus" style="color: black; text-decoration: none;">almaha.qc.plus</a>
+            </p>
+            <p>
+            <a href="mailto:almaha@qc.plus" style="color: black; text-decoration: none;">almaha@qc.plus</a>
+            </p>
+          </div>
+          <div class="cta-content">
+            <h1>LUSAIL MUSEUM</h1>
+            <p>
+            Lusail Museum is a global think tank and a world-class art museum
+            that aims to serve as a platform for diplomacy while providing a
+            setting for discourse on the historic and contemporary
+            relationships, exchanges, and influences between cultures. The
+            building is designed to be an engaging public destination with
+            spaces for exhibition, education, research, art preservation and
+            public events. It will be a local cultural anchor, but with a global
+            voice.
+            </p>
+            
         </div>
       </section>
-    </main>
+
+      <div class="lead-form-container">
+        <h3>Get in touch</h3>
+        <form id="lead-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email@example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+1234567890"
+            />
+          </div>
+          <button type="submit">Submit</button>
+          <p id="form-status" class="form-status"></p>
+        </form>
+      </div>
+    </section>
 
     <footer class="site-footer">
       <div class="footer-content">
@@ -110,55 +480,62 @@
           <p>IMAGES: &copy; HERZOG & DE MEURON, 2025</p>
         </div>
         <div class="logo-container">
-          <img src="./images/QCPlus_Logo_Working_20240716_01 1.png" alt="QC+ Logo" />
+          <img
+            src="./images/QCPlus_Logo_Working_20240716_01 1.png"
+            alt="QC+ Logo"
+          />
           <img src="./images/Screenshot 2025-06-04 155642.png" alt="QM Logo" />
-          <img src="./images/Screenshot 2025-06-04 155658.png" alt="Lusail Museum Logo" />
+          <img
+            src="./images/Screenshot 2025-06-04 155658.png"
+            alt="Lusail Museum Logo"
+          />
         </div>
       </div>
     </footer>
-
+    <script src="script.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var img = document.getElementById('zoomable-map');
-        var closeBtn = document.getElementById('zoom-close-btn');
-        if (!img || !closeBtn) return;
+document.addEventListener('DOMContentLoaded', function() {
+  var img = document.getElementById('zoomable-map');
+  var closeBtn = document.getElementById('zoom-close-btn');
+  if (!img || !closeBtn) return;
 
-        function isMobile() {
-          return window.innerWidth <= 900;
-        }
+  function isMobile() {
+    return window.innerWidth <= 900;
+  }
 
-        function zoomIn() {
-          img.classList.add('zoomed');
-          document.body.style.overflow = 'hidden';
-          closeBtn.style.display = 'block';
-        }
+  function zoomIn() {
+    img.classList.add('zoomed');
+    document.body.style.overflow = 'hidden';
+    closeBtn.style.display = 'block';
+  }
 
-        function zoomOut() {
-          img.classList.remove('zoomed');
-          document.body.style.overflow = '';
-          closeBtn.style.display = 'none';
-        }
+  function zoomOut() {
+    img.classList.remove('zoomed');
+    document.body.style.overflow = '';
+    closeBtn.style.display = 'none';
+  }
 
-        img.addEventListener('click', function() {
-          if (!isMobile()) return;
-          if (img.classList.contains('zoomed')) {
-            zoomOut();
-          } else {
-            zoomIn();
-          }
-        });
+  img.addEventListener('click', function() {
+    if (!isMobile()) return;
+    if (img.classList.contains('zoomed')) {
+      zoomOut();
+    } else {
+      zoomIn();
+    }
+  });
 
-        closeBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          zoomOut();
-        });
+  closeBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    zoomOut();
+  });
 
-        window.addEventListener('resize', function() {
-          if (!isMobile() && img.classList.contains('zoomed')) {
-            zoomOut();
-          }
-        });
-      });
-    </script>
+  // Remove zoom if window resized to desktop
+  window.addEventListener('resize', function() {
+    if (!isMobile() && img.classList.contains('zoomed')) {
+      zoomOut();
+    }
+  });
+});
+</script>
   </body>
 </html>
