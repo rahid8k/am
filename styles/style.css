@@ -475,17 +475,6 @@ body {
   opacity: 1;
 }
 
-/* Prevent horizontal scroll on the whole page */
-html, body {
-  overflow-x: hidden;
-}
-
-/* Prevent horizontal panning on zoomed images */
-.zoomed-mobile {
-  touch-action: pan-y; /* Only allow vertical scrolling */
-  overscroll-behavior-x: contain;
-}
-
 @media (max-width: 1400px) {
   .content-block-wrapper,
   .cta-content,
@@ -576,26 +565,6 @@ html, body {
     margin: 0;
     padding: 0;
     text-align: left;
-  }
-
-  .detail-image {
-    transition: 
-      transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1), /* 0.8s for slow zoom */
-      box-shadow 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-  }
-
-  .zoomed-mobile {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: contain;
-    background: none;
-    z-index: 9999;
-    margin: 0;
-    padding: 0;
-    transform: scale(1.08); /* or adjust scale as needed */
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
   }
 }
 
