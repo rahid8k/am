@@ -210,6 +210,17 @@ body {
   align-items: center;
 }
 
+#details-section .content-wrapper,
+#details-section .content-block-wrapper,
+#details-section p {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: row;
