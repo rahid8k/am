@@ -555,15 +555,11 @@ body {
   display: block !important;
 }
 @media (min-width: 901px) {
-  .zoomable-map.zoomed {
-    position: static;
-    width: auto !important;
-    height: auto !important;
-    background: none;
-    z-index: auto;
+  .zoomable-map {
+    cursor: default !important;
   }
-  .zoom-close-btn {
-    display: none !important;
+  .zoomable-map.zoomed {
+    cursor: default !important;
   }
 }
 

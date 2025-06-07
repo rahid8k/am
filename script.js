@@ -125,4 +125,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Also handle on resize
     window.addEventListener('resize', handleScrollAnimation);
+    
+    // Zoom functionality on click for images
+    parallaxImages.forEach(img => {
+        img.addEventListener('click', function() {
+            if (!isMobile()) return; // Prevent zoom on desktop
+            if (img.classList.contains('zoomed')) {
+                zoomOut();
+            } else {
+                zoomIn();
+            }
+        });
+    });
 });
