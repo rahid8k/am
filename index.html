@@ -44,6 +44,13 @@
     z-index: auto;
   }
 }
+
+#zoom-close-btn {
+  display: none;
+}
+#zoomable-map.zoomed + #zoom-close-btn {
+  display: block !important;
+}
     </style>
   </head>
   <body>
@@ -88,6 +95,7 @@
               class="detail-image"
               id="zoomable-map"
             />
+            <button id="zoom-close-btn" style="display:none;position:fixed;top:20px;right:20px;z-index:10000;font-size:2rem;background:#fff;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;">&times;</button>
           </div>
         </div>
       </div>
@@ -471,27 +479,41 @@
     <script>
 document.addEventListener('DOMContentLoaded', function() {
   var img = document.getElementById('zoomable-map');
-  if (!img) return;
+  var closeBtn = document.getElementById('zoom-close-btn');
+  if (!img || !closeBtn) return;
 
   function isMobile() {
     return window.innerWidth <= 900;
   }
 
+  function zoomIn() {
+    img.classList.add('zoomed');
+    document.body.style.overflow = 'hidden';
+    closeBtn.style.display = 'block';
+  }
+
+  function zoomOut() {
+    img.classList.remove('zoomed');
+    document.body.style.overflow = '';
+    closeBtn.style.display = 'none';
+  }
+
   img.addEventListener('click', function() {
     if (!isMobile()) return;
-    img.classList.toggle('zoomed');
-    if (img.classList.contains('zoomed')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+    if (!img.classList.contains('zoomed')) {
+      zoomIn();
     }
+  });
+
+  closeBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    zoomOut();
   });
 
   // Remove zoom if window resized to desktop
   window.addEventListener('resize', function() {
     if (!isMobile() && img.classList.contains('zoomed')) {
-      img.classList.remove('zoomed');
-      document.body.style.overflow = '';
+      zoomOut();
     }
   });
 });
