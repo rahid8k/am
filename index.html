@@ -494,45 +494,41 @@
     <script src="script.js"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var img = document.getElementById('zoomable-map');
-  var closeBtn = document.getElementById('zoom-close-btn');
-  if (!img || !closeBtn) return;
-
   function isMobile() {
     return window.innerWidth <= 900;
   }
+  document.querySelectorAll('.image-block').forEach(function(block) {
+    var img = block.querySelector('.zoomable-map');
+    var closeBtn = block.querySelector('.zoom-close-btn');
+    if (!img || !closeBtn) return;
 
-  function zoomIn() {
-    img.classList.add('zoomed');
-    document.body.style.overflow = 'hidden';
-    closeBtn.style.display = 'block';
-  }
-
-  function zoomOut() {
-    img.classList.remove('zoomed');
-    document.body.style.overflow = '';
-    closeBtn.style.display = 'none';
-  }
-
-  img.addEventListener('click', function() {
-    if (!isMobile()) return;
-    if (img.classList.contains('zoomed')) {
-      zoomOut();
-    } else {
-      zoomIn();
+    function zoomIn() {
+      img.classList.add('zoomed');
+      document.body.style.overflow = 'hidden';
+      closeBtn.style.display = 'block';
     }
-  });
-
-  closeBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    zoomOut();
-  });
-
-  // Remove zoom if window resized to desktop
-  window.addEventListener('resize', function() {
-    if (!isMobile() && img.classList.contains('zoomed')) {
-      zoomOut();
+    function zoomOut() {
+      img.classList.remove('zoomed');
+      document.body.style.overflow = '';
+      closeBtn.style.display = 'none';
     }
+    img.addEventListener('click', function() {
+      if (!isMobile()) return;
+      if (img.classList.contains('zoomed')) {
+        zoomOut();
+      } else {
+        zoomIn();
+      }
+    });
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      zoomOut();
+    });
+    window.addEventListener('resize', function() {
+      if (!isMobile() && img.classList.contains('zoomed')) {
+        zoomOut();
+      }
+    });
   });
 });
 </script>
