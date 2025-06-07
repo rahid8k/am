@@ -626,15 +626,6 @@ body {
     transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
     cursor: zoom-in;
   }
-
-  .top-left-title {
-    position: static !important;
-    left: auto !important;
-    top: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    width: 100%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -720,25 +711,5 @@ body {
 
   .lead-form-container button[type="submit"] {
     width: 70%;
-  }
-}
-
-@media (max-width: 640px) {
-  .content-block-wrapper {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-  .top-left-title {
-    left: 20px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .content-block-wrapper {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-  .top-left-title {
-    left: 15px !important;
   }
 }
