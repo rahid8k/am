@@ -726,3 +726,10 @@ body {
   padding-left: 24px;
   padding-right: 24px;
 }
+
+@media (max-width: 900px) {
+  .main-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
