@@ -747,10 +747,21 @@ body {
   padding-right: 0;
 }
 
-.content-wrapper,
-.content-block-wrapper {
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%;
+/* Ensure all text blocks are aligned with .main-container */
+.content-block-wrapper,
+.content-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   box-sizing: border-box;
+}
+
+.content-block-wrapper p {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
