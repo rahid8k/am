@@ -48,7 +48,6 @@
           </div>
           <div class="image-block">
             <img
-              id="sense-of-place-map"
               src="images/a sense of place map.png"
               alt="Al Maha Detail"
               class="detail-image"
@@ -454,32 +453,5 @@
       </div>
     </footer>
     <script src="script.js"></script>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var img = document.getElementById('sense-of-place-map');
-  if (!img) return;
-
-  function isMobile() {
-    return window.innerWidth <= 640;
-  }
-
-  img.addEventListener('click', function handler(e) {
-    if (!isMobile()) return;
-
-    // Toggle zoom
-    if (!img.classList.contains('zoomed-mobile')) {
-      img.classList.add('zoomed-mobile');
-      img.style.zIndex = 9999;
-
-      // Add a one-time event to close zoom
-      img.addEventListener('click', function closeZoom() {
-        img.classList.remove('zoomed-mobile');
-        img.style.zIndex = '';
-        img.removeEventListener('click', closeZoom);
-      }, { once: true });
-    }
-  });
-});
-</script>
   </body>
 </html>
