@@ -626,16 +626,6 @@ body {
     transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
     cursor: zoom-in;
   }
-
-  .main-container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .top-left-title {
-    left: 12px; /* Match main-container padding */
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 @media (max-width: 768px) {
@@ -692,9 +682,7 @@ body {
   }
 
   .top-left-title {
-    left: 15px; /* Match main-container padding */
-    padding-left: 0;
-    padding-right: 0;
+    left: 15px;         /* Slightly smaller margin for very small screens */
     top: 10px;
     width: 100%;
     padding: 10px 15px;
@@ -724,33 +712,4 @@ body {
   .lead-form-container button[type="submit"] {
     width: 70%;
   }
-}
-
-.main-container {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-@media (max-width: 900px) {
-  .main-container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-
-/* Remove extra padding from content-block-wrapper if needed */
-.content-block-wrapper {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.content-wrapper,
-.content-block-wrapper {
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%;
-  box-sizing: border-box;
 }
