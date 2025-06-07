@@ -492,6 +492,20 @@ body {
   -webkit-touch-callout: none;
 }
 
+/* Zoomable image styles */
+.zoomable {
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+  cursor: zoom-in;
+  z-index: 10;
+}
+
+.zoomable.zoomed {
+  transform: scale(2) translate(0, 0);
+  cursor: zoom-out;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+  position: relative;
+}
+
 @media (max-width: 1400px) {
   .content-block-wrapper,
   .cta-content,
