@@ -498,12 +498,13 @@ body {
   cursor: zoom-in;
   z-index: 10;
 }
-Al Maha Detail
+
 .zoomable.zoomed {
   transform: scale(2) translate(0, 0);
   cursor: zoom-out;
   box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
   position: relative;
+  z-index: 1000;
 }
 
 @media (max-width: 1400px) {
