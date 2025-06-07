@@ -20,6 +20,30 @@
         -webkit-user-drag: none;
         -webkit-touch-callout: none;
       }
+      #zoomable-map.zoomed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  transition: all 0.3s;
+}
+
+@media (min-width: 901px) {
+  #zoomable-map.zoomed {
+    position: static;
+    width: auto !important;
+    height: auto !important;
+    background: none;
+    z-index: auto;
+  }
+}
     </style>
   </head>
   <body>
@@ -62,6 +86,7 @@
               src="images/a sense of place map.png"
               alt="Al Maha Detail"
               class="detail-image"
+              id="zoomable-map"
             />
           </div>
         </div>
