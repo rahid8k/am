@@ -126,3 +126,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // Also handle on resize
     window.addEventListener('resize', handleScrollAnimation);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var img = document.getElementById('sense-of-place-map');
+  if (!img) return;
+
+  function isMobile() {
+    return window.innerWidth <= 640;
+  }
+
+  img.addEventListener('click', function handler(e) {
+    if (!isMobile()) return;
+
+    // Toggle zoom
+    if (!img.classList.contains('zoomed-mobile')) {
+      img.classList.add('zoomed-mobile');
+      img.style.zIndex = 9999;
+
+      // Prevent horizontal touchmove while zoomed
+      function preventHorizontal(e) {
+        if (e.touches && e.touches.length === 1) {
+          // Only allow vertical movement
+          if (Math.abs(e.touches[0].clientX - e.touches[0].screenX) > 0) {
+            e.preventDefault();
+          }
+        }
+      }
+      img.addEventListener('touchmove', preventHorizontal, { passive: false });
+
+      // Add a one-time event to close zoom
+      img.addEventListener('click', function closeZoom() {
+        img.classList.remove('zoomed-mobile');
+        img.style.zIndex = '';
+        img.removeEventListener('touchmove', preventHorizontal);
+        img.removeEventListener('click', closeZoom);
+      }, { once: true });
+    }
+  });
+});
