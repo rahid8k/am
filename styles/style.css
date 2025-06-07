@@ -498,7 +498,7 @@ body {
   cursor: zoom-in;
   z-index: 10;
 }
-
+Al Maha Detail
 .zoomable.zoomed {
   transform: scale(2) translate(0, 0);
   cursor: zoom-out;
@@ -555,6 +555,19 @@ body {
   .cta-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  #zoomable-map.zoomed {
+    transform: scale(2) translate(0, 0);
+    cursor: zoom-out;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+  }
+  #zoomable-map {
+    transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+    cursor: zoom-in;
   }
 }
 

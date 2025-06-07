@@ -454,6 +454,34 @@
       </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var img = document.getElementById('zoomable-map');
+  if (!img) return;
+
+  function isMobile() {
+    return window.innerWidth <= 900;
+  }
+
+  img.addEventListener('click', function handler(e) {
+    if (!isMobile()) return;
+    img.classList.toggle('zoomed');
+    if (img.classList.contains('zoomed')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Remove zoom if window resized to desktop
+  window.addEventListener('resize', function() {
+    if (!isMobile() && img.classList.contains('zoomed')) {
+      img.classList.remove('zoomed');
+      document.body.style.overflow = '';
+    }
+  });
+});
+</script>
   </body>
 </html>
 /* Prevent horizontal scroll on the whole page */
