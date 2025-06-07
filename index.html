@@ -463,29 +463,21 @@ document.addEventListener('DOMContentLoaded', function() {
     return window.innerWidth <= 640;
   }
 
-  img.addEventListener('click', function(e) {
+  img.addEventListener('click', function handler(e) {
     if (!isMobile()) return;
 
-    // Create overlay background
-    var bg = document.createElement('div');
-    bg.className = 'zoomed-mobile-bg';
-    document.body.appendChild(bg);
+    // Toggle zoom
+    if (!img.classList.contains('zoomed-mobile')) {
+      img.classList.add('zoomed-mobile');
+      img.style.zIndex = 9999;
 
-    // Zoom image
-    img.classList.add('zoomed-mobile');
-    img.style.zIndex = 9999;
-
-    // Click anywhere to close
-    function closeZoom() {
-      img.classList.remove('zoomed-mobile');
-      img.style.zIndex = '';
-      if (bg.parentNode) bg.parentNode.removeChild(bg);
-      img.removeEventListener('click', closeZoom);
-      bg.removeEventListener('click', closeZoom);
+      // Add a one-time event to close zoom
+      img.addEventListener('click', function closeZoom() {
+        img.classList.remove('zoomed-mobile');
+        img.style.zIndex = '';
+        img.removeEventListener('click', closeZoom);
+      }, { once: true });
     }
-
-    img.addEventListener('click', closeZoom);
-    bg.addEventListener('click', closeZoom);
   });
 });
 </script>

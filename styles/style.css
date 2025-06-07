@@ -573,7 +573,7 @@ body {
     width: 100vw;
     height: 100vh;
     object-fit: contain;
-    background: rgba(0,0,0,0.85);
+    background: none; /* No dark background */
     z-index: 9999;
     margin: 0;
     padding: 0;
