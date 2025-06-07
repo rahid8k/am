@@ -631,6 +631,11 @@ body {
     padding-left: 12px;
     padding-right: 12px;
   }
+  .top-left-title {
+    left: 12px; /* Match main-container padding */
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -687,7 +692,9 @@ body {
   }
 
   .top-left-title {
-    left: 15px;         /* Slightly smaller margin for very small screens */
+    left: 15px; /* Match main-container padding */
+    padding-left: 0;
+    padding-right: 0;
     top: 10px;
     width: 100%;
     padding: 10px 15px;
