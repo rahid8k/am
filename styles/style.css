@@ -626,6 +626,15 @@ body {
     transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
     cursor: zoom-in;
   }
+
+  .top-left-title {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
