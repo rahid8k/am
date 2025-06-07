@@ -642,12 +642,13 @@ body {
     --body-size: calc(var(--headline-size) * 0.27);
   }
   .content-block-wrapper {
-    width: 100%;
-    max-width: 100%;
-    min-width: 120px;
-    margin: 30px 0;
-    padding: 12px 5px;
-  }
+        width: 100%;
+        max-width: 100%;
+        min-width: 120px;
+        margin: 30px;
+        padding: 12px 5px;
+    
+    }
 
   .top-left-title {
     position: absolute;
