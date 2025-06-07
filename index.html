@@ -500,7 +500,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   img.addEventListener('click', function() {
     if (!isMobile()) return;
-    if (!img.classList.contains('zoomed')) {
+    if (img.classList.contains('zoomed')) {
+      zoomOut();
+    } else {
       zoomIn();
     }
   });
