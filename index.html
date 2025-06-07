@@ -20,7 +20,18 @@
         -webkit-user-drag: none;
         -webkit-touch-callout: none;
       }
-      #zoomable-map.zoomed {
+#zoomable-map {
+  transition: 
+    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s,
+    z-index 0s,
+    background 0.3s;
+  transform-origin: center center;
+  z-index: 1;
+  position: relative;
+}
+
+#zoomable-map.zoomed {
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +43,14 @@
   margin: 0;
   padding: 0;
   box-shadow: none;
-  transition: all 0.3s;
+  transform: scale(2.5) translate(-50%, -50%);
+  left: 50vw;
+  top: 50vh;
+  transition: 
+    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s,
+    z-index 0s,
+    background 0.3s;
 }
 
 @media (min-width: 901px) {
